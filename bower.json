@@ -1,4 +1,6 @@
 {
   "name": "ember-photoswipe",
-  "dependencies": {}
+  "dependencies": {
+    "photoswipe": "^4.1.1"
+  }
 }

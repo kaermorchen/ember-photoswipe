@@ -1,0 +1,10 @@
+@import "ember-photoswipe";
+
+.preview {
+  display: inline-block;
+  width: 200px;
+  height: auto;
+  margin: 10px;
+
+  cursor: pointer;
+}

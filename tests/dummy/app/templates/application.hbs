@@ -1,5 +1,5 @@
-{{!-- The following component displays Ember's default welcome message. --}}
-{{welcome-page}}
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+{{#photo-swipe as |photoswipe|}}
+  {{#each attachments as |attachment|}}
+    <img class="preview" src={{attachment.src}} {{action 'open' attachments options target=photoswipe}} />
+  {{/each}}
+{{/photo-swipe}}

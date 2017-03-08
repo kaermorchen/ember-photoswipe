@@ -3,23 +3,31 @@
   "version": "0.1.0",
   "description": "An ember-cli addon for using Photoswipe in Ember applications.",
   "keywords": [
-    "photoswipe",
+    "ember-addon",
     "ember-photoswipe",
-    "ember-addon"
+    "photoswipe",
+    "gallery",
+    "lightbox",
+    "photo",
+    "image",
+    "touch",
+    "swipe",
+    "zoom"
   ],
   "license": "MIT",
-  "author": "Stanislav Romanov <mail@stanislavromanov.ru> (http://stanislavromanov.ru)",
+  "author": "Stanislav Romanov <mail@stanislavromanov.ru> (https://stanislavromanov.ru)",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
+  "repository": "https://github.com/kaermorchen/ember-photoswipe",
   "scripts": {
     "build": "ember build",
     "start": "ember server",
     "test": "ember try:each"
   },
   "dependencies": {
+    "broccoli-funnel": "^1.1.0",
     "ember-cli-babel": "^5.1.7",
     "ember-cli-htmlbars": "^1.1.1",
     "ember-cli-htmlbars-inline-precompile": "^0.3.3"

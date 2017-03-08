@@ -16,7 +16,7 @@ Then include the following in your `app.scss` file:
 @import "ember-photoswipe";
 ```
 
-## Used
+## Usage
 
 ```
 // app/controller/application.js

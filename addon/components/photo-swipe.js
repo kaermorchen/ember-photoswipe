@@ -4,7 +4,12 @@
 import Ember from 'ember';
 import layout from '../templates/components/photo-swipe';
 
-const { assign, computed, on, isPresent, isEmpty } = Ember;
+const {
+  assign,
+  computed,
+  isArray,
+  String: { classify }
+} = Ember;
 
 export default Ember.Component.extend({
   layout,
@@ -40,13 +45,35 @@ export default Ember.Component.extend({
     'isClickableElement',
     'modal',
   ],
-  pswp: null,
 
-  options: computed(function() {
+  pswpEvents: [
+    'beforeChange',
+    'afterChange',
+    'imageLoadComplete',
+    'resize',
+    'gettingData',
+    'mouseUsed',
+    'initialZoomIn',
+    'initialZoomInEnd',
+    'initialZoomOut',
+    'initialZoomOutEnd',
+    'parseVerticalMargin',
+    'close',
+    'unbindEvents',
+    'destroy',
+    'updateScrollOffset',
+    'preventDragEvent',
+    'shareLinkClick',
+  ],
+
+  pswp: null,
+  items: null,
+
+  options: computed(function () {
     const pswpOptions = this.get('pswpOptions');
     const options = {};
 
-    pswpOptions.forEach(optionName => {
+    pswpOptions.forEach((optionName) => {
       if (this.get(optionName) !== undefined) {
         options[optionName] = this.get(optionName);
       }
@@ -55,18 +82,41 @@ export default Ember.Component.extend({
     return options;
   }),
 
-  destroyPswp: on('willDestroyElement', function() {
-    const pswp = this.get('pswp');
+  usedPswpEvents: computed('pswpEvents', function () {
+    return this.get('pswpEvents').filter((eventName) => {
+      let actionName = 'on' + classify(eventName);
 
-    if (isPresent(pswp)) {
-      pswp.close();
-    }
+      return this.get(actionName) !== undefined;
+    });
   }),
 
+  _addEventListeners(pswp) {
+    this.get('usedPswpEvents').forEach(eventName => {
+      let actionName = 'on' + classify(eventName);
+
+      pswp.listen(eventName, () => {
+        this.sendAction(actionName, ...arguments);
+      });
+    });
+  },
+
   actions: {
-    open(items, actionOptions) {
-      if (isEmpty(items)) {
-        return;
+    open(arg1, arg2) {
+      let items;
+      let actionOptions;
+
+      if (arguments.length === 2) {
+        items = arg1;
+        actionOptions = arg2;
+      } else if (arguments.length === 1) {
+        if (isArray(arg1)) {
+          items = arg1;
+        } else {
+          items = this.get('items');
+          actionOptions = arg1;
+        }
+      } else {
+        items = this.get('items');
       }
 
       const pswpElement = this.$('.pswp')[0];
@@ -76,7 +126,7 @@ export default Ember.Component.extend({
 
       pswp.init();
 
-      this.set('pswp', pswp);
+      this._addEventListeners(pswp);
     }
   }
 });

@@ -1,5 +1,5 @@
-{{#photo-swipe as |photoswipe|}}
-  {{#each attachments as |attachment|}}
-    <img class="preview" src={{attachment.src}} {{action 'open' attachments options target=photoswipe}} />
+{{#photo-swipe history=false as |photoswipe|}}
+  {{#each items as |item index|}}
+    <img class="preview" src={{item.src}} {{action 'open' items (hash index=index) target=photoswipe}} />
   {{/each}}
 {{/photo-swipe}}

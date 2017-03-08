@@ -1,11 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  options: {
-    history: false
-  },
-
-  attachments: [
+  items: [
     {
       src: 'https://unsplash.it/1024/768/?random&image1',
       w: 1024,

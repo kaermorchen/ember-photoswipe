@@ -18,16 +18,14 @@ Then include the following in your `app.scss` file:
 
 ## Usage
 
+We have javascript array of images
+
 ```
 // app/controller/application.js
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
-  options: {
-    history: false
-  },
-
-  attachments: [
+  items: [
     {
       src: 'https://unsplash.it/1024/768/?random&image1',
       w: 1024,
@@ -47,11 +45,47 @@ export default Ember.Controller.extend({
 });
 ```
 
+You can pass items and photoswipe options directly into photo-swipe component
+
 ```
 // app/templates/application.hbs
+{{#photo-swipe items=items history=false as |photoswipe|}}
+  {{#each items as |item index|}}
+    <img class="preview" src={{item.src}} {{action 'open' target=photoswipe}} />
+  {{/each}}
+{{/photo-swipe}}
+```
+
+Or you can pass items and options to action
+
+```
 {{#photo-swipe as |photoswipe|}}
-  {{#each attachments as |attachment|}}
-    <img class="preview" src={{attachment.src}} {{action 'open' attachments options target=photoswipe}} />
+  {{#each items as |item index|}}
+    <img class="preview" src={{item.src}} {{action 'open' items (hash history=false) target=photoswipe}} />
+  {{/each}}
+{{/photo-swipe}}
+```
+
+Or you can pass to action options only, it will be usefull for open clicked image
+
+```
+{{#photo-swipe items=items history=false as |photoswipe|}}
+  {{#each items as |item index|}}
+    <img class="preview" src={{item.src}} {{action 'open' (hash index=index) target=photoswipe}} />
+  {{/each}}
+{{/photo-swipe}}
+```
+
+All list of options is available [here](http://photoswipe.com/documentation/options.html).
+
+### Event
+
+Phowo-swipe sends actions based on the corresponding photoswipe [events](http://photoswipe.com/documentation/api.html).
+
+```
+{{#photo-swipe onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}
+  {{#each items as |item index|}}
+    <img class="preview" src={{item.src}} {{action 'open' items (hash index=index) target=photoswipe}} />
   {{/each}}
 {{/photo-swipe}}
 ```

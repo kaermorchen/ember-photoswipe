@@ -6,6 +6,7 @@ import layout from '../templates/components/photo-swipe';
 
 const {
   assign,
+  getProperties,
   computed,
   isArray,
   String: { classify }
@@ -14,7 +15,7 @@ const {
 export default Ember.Component.extend({
   layout,
 
-  concatenatedProperties: ['pswpOptions'],
+  concatenatedProperties: ['pswpOptions', 'pswpEvents', 'itemProperties'],
 
   pswpOptions: [
     'index',
@@ -68,6 +69,7 @@ export default Ember.Component.extend({
 
   pswp: null,
   items: null,
+  itemProperties: ['src', 'h', 'w'],
 
   options: computed(function () {
     const pswpOptions = this.get('pswpOptions');
@@ -104,6 +106,11 @@ export default Ember.Component.extend({
     open(arg1, arg2) {
       let items;
       let actionOptions;
+      let pswp;
+      let assignedOptions;
+      const itemProperties = this.get('itemProperties');
+      const pswpElement = this.$('.pswp')[0];
+      const options = this.get('options');
 
       if (arguments.length === 2) {
         items = arg1;
@@ -119,10 +126,12 @@ export default Ember.Component.extend({
         items = this.get('items');
       }
 
-      const pswpElement = this.$('.pswp')[0];
-      const options = this.get('options');
-      const assignedOptions = assign({}, options, actionOptions);
-      const pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
+      items = items.map(function(item) {
+        return getProperties(item, itemProperties);
+      });
+
+      assignedOptions = assign({}, options, actionOptions);
+      pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
 
       pswp.init();
 

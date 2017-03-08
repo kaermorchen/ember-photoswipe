@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -153,6 +154,42 @@ test('pass options only', function (assert) {
     {{#photo-swipe history=false items=items onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
       {{#each items as |item|}}
         <img src={{item.src}} {{action 'open' (hash bgOpacity=0) target=photoswipe}} />
+      {{/each}}
+    {{/photo-swipe}}
+  `);
+  this.$('img').eq(0).click();
+});
+
+test('pass items of Ember.Object', function (assert) {
+  assert.expect(1);
+  const done = assert.async();
+
+  const Item = Ember.Object.extend({
+    src: Ember.computed.alias('path')
+  });
+
+  this.set('items', [
+    Item.create({
+      path: 'https://unsplash.it/1024/768/?random&image1',
+      w: 1024,
+      h: 768,
+    }),
+    Item.create({
+      path: 'https://unsplash.it/1024/768/?random&image2',
+      w: 768,
+      h: 1024,
+    })
+  ]);
+
+  this.set('onInitialZoomInEnd', () => {
+    assert.equal(this.$('img.pswp__img').length, this.get('items.length'));
+    done();
+  });
+
+  this.render(hbs`
+    {{#photo-swipe history=false onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
+      {{#each items as |item|}}
+        <img src={{item.src}} {{action 'open' items target=photoswipe}} />
       {{/each}}
     {{/photo-swipe}}
   `);

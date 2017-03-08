@@ -18,7 +18,7 @@ Then include the following in your `app.scss` file:
 
 ## Usage
 
-We have javascript array of images
+We have array of javascript objects, but you can use array of Ember.Objects too. Inside photo-swipe all required properties will be to take through getProperties.
 
 ```
 // app/controller/application.js
@@ -44,6 +44,8 @@ export default Ember.Controller.extend({
   ]
 });
 ```
+
+### Photoswipe options
 
 You can pass items and photoswipe options directly into photo-swipe component
 

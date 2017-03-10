@@ -3,6 +3,7 @@
 [![npm version](https://badge.fury.io/js/ember-photoswipe.svg)](http://badge.fury.io/js/ember-photoswipe)
 [![npm](https://img.shields.io/npm/dm/ember-photoswipe.svg)]()
 [![Ember Observer Score](https://emberobserver.com/badges/ember-photoswipe.svg)](https://emberobserver.com/addons/ember-photoswipe)
+[![Build Status](https://travis-ci.org/kaermorchen/ember-photoswipe.svg?branch=master)](https://travis-ci.org/kaermorchen/ember-photoswipe)
 
 An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
 

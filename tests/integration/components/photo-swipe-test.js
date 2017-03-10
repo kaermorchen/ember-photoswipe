@@ -85,12 +85,12 @@ test('pass items only', function (assert) {
   }]);
 
   this.set('onInitialZoomInEnd', () => {
-    assert.equal(this.$('img.pswp__img').length, this.get('items.length'));
+    assert.equal(this.get('pswp').items.length, this.get('items.length'));
     done();
   });
 
   this.render(hbs`
-    {{#photo-swipe history=false onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
+    {{#photo-swipe history=false pswp=pswp onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
       {{#each items as |item|}}
         <img src={{item.src}} {{action 'open' items target=photoswipe}} />
       {{/each}}
@@ -115,13 +115,14 @@ test('pass items and options', function (assert) {
   }]);
 
   this.set('onInitialZoomInEnd', () => {
-    assert.equal(this.$('img.pswp__img').length, this.get('items.length'));
+    assert.equal(this.get('pswp').items.length, this.get('items.length'));
     assert.equal(this.$('.pswp__bg').css('opacity'), 0);
+
     done();
   });
 
   this.render(hbs`
-    {{#photo-swipe history=false onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
+    {{#photo-swipe history=false pswp=pswp onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
       {{#each items as |item|}}
         <img src={{item.src}} {{action 'open' items (hash bgOpacity=0) target=photoswipe}} />
       {{/each}}
@@ -182,12 +183,12 @@ test('pass items of Ember.Object', function (assert) {
   ]);
 
   this.set('onInitialZoomInEnd', () => {
-    assert.equal(this.$('img.pswp__img').length, this.get('items.length'));
+    assert.equal(this.get('pswp').items.length, this.get('items.length'));
     done();
   });
 
   this.render(hbs`
-    {{#photo-swipe history=false onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
+    {{#photo-swipe history=false pswp=pswp onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoswipe|}}
       {{#each items as |item|}}
         <img src={{item.src}} {{action 'open' items target=photoswipe}} />
       {{/each}}

@@ -5,6 +5,8 @@ const Item = Ember.Object.extend({
 });
 
 export default Ember.Controller.extend({
+  isShown: true,
+
   items: [
     Item.create({
       path: 'https://unsplash.it/1024/768/?random&image1',
@@ -21,5 +23,16 @@ export default Ember.Controller.extend({
       w: 768,
       h: 768,
     }),
-  ]
+    Item.create({
+      path: 'https://unsplash.it/768/1024/?random&image4',
+      w: 768,
+      h: 1024,
+    }),
+  ],
+
+  actions: {
+    toggleIsShown() {
+      this.toggleProperty('isShown');
+    }
+  }
 });

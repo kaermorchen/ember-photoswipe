@@ -9,6 +9,7 @@ const {
   getProperties,
   computed,
   isArray,
+  isPresent,
   String: { classify }
 } = Ember;
 
@@ -102,6 +103,18 @@ export default Ember.Component.extend({
     });
   },
 
+  willDestroyElement() {
+    let pswp = this.get('pswp');
+
+    if (isPresent(pswp)) {
+      pswp.close();
+      pswp = null;
+      this.set('pswp', null);
+    }
+
+    this._super(...arguments);
+  },
+
   actions: {
     open(arg1, arg2) {
       let items;
@@ -134,6 +147,8 @@ export default Ember.Component.extend({
       pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
 
       pswp.init();
+
+      this.set('pswp', pswp);
 
       this._addEventListeners(pswp);
     }

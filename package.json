@@ -1,7 +1,7 @@
 {
   "name": "ember-photoswipe",
   "version": "0.2.0",
-  "description": "An ember-cli addon for using Photoswipe in Ember applications.",
+  "description": "An Ember addon for using Photoswipe in Ember applications.",
   "keywords": [
     "ember-addon",
     "ember-photoswipe",
@@ -15,7 +15,11 @@
     "zoom"
   ],
   "license": "MIT",
-  "author": "Stanislav Romanov <mail@stanislavromanov.ru> (https://stanislavromanov.ru)",
+  "author": {
+    "name": "Stanislav Romanov",
+    "email": "kaermorchen@gmail.com",
+    "url": "https://stanislavromanov.ru"
+  },
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -57,7 +61,7 @@
     "loader.js": "^4.0.10"
   },
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">= 4.0.0"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",

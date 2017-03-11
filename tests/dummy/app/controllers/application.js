@@ -1,38 +1,39 @@
 import Ember from 'ember';
 
+const { A, computed } = Ember;
+
 const Item = Ember.Object.extend({
-  src: Ember.computed.alias('path')
+  src: computed('id', 'w', 'h', function() {
+    return `https://unsplash.it/${this.get('w')}/${this.get('h')}/?random&image${this.get('id')}`;
+  })
 });
 
 export default Ember.Controller.extend({
-  isShown: true,
-
-  items: [
+  items: A([
     Item.create({
-      path: 'https://unsplash.it/1024/768/?random&image1',
+      id: 1,
       w: 1024,
       h: 768,
     }),
     Item.create({
-      path: 'https://unsplash.it/768/1024/?random&image2',
-      w: 768,
-      h: 1024,
-    }),
-    Item.create({
-      path: 'https://unsplash.it/768/768/?random&image3',
-      w: 768,
+      id: 2,
+      w: 1024,
       h: 768,
     }),
     Item.create({
-      path: 'https://unsplash.it/768/1024/?random&image4',
-      w: 768,
-      h: 1024,
+      id: 3,
+      w: 1024,
+      h: 768,
     }),
-  ],
-
-  actions: {
-    toggleIsShown() {
-      this.toggleProperty('isShown');
-    }
-  }
+    Item.create({
+      id: 4,
+      w: 1024,
+      h: 768,
+    }),
+    Item.create({
+      id: 5,
+      w: 1024,
+      h: 768,
+    }),
+  ])
 });

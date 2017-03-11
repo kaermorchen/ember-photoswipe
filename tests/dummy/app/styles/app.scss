@@ -1,10 +1,16 @@
 @import "ember-photoswipe";
 
-.preview {
-  display: inline-block;
-  width: 200px;
-  height: auto;
-  margin: 10px;
+html, body,
+body > .ember-view,
+body > .ember-view > .container,
+body > .ember-view > .container > .row {
+  height: 100%;
+}
 
+body {
+  background-color: #EEE;
+}
+
+.img-fluid {
   cursor: pointer;
 }

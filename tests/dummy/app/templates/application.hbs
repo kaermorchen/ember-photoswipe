@@ -1,9 +1,31 @@
-{{#if isShown}}
-  {{#photo-swipe history=false as |photoswipe|}}
-    {{#each items as |item index|}}
-      <img class="preview" src={{item.src}} {{action 'open' items (hash index=index) target=photoswipe}} />
-    {{/each}}
-  {{/photo-swipe}}
-{{/if}}
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col">
+      <h1>Ember PhotoSwipe</h1>
 
-<button {{action "toggleIsShown"}}>Toggle</button>
+      <p>An <a href="http://emberjs.com/">Ember</a> addon for using <a href="http://photoswipe.com/">Photoswipe</a> in Ember applications.</p>
+
+      {{#photo-swipe items=items history=false as |photoswipe|}}
+        <div class="row">
+          <div class="col-12 col-md-6 mb-4">
+            <img class="img-fluid" src={{items.firstObject.src}} {{action 'open' (hash index=index) target=photoswipe}} />
+          </div>
+          <div class="col-12 col-md-6">
+            <div class="row">
+              {{#each items as |item index|}}
+                {{#if index}}
+                  <div class="col-12 col-md-6 mb-4">
+                    <img class="img-fluid" src={{item.src}} {{action 'open' items (hash index=index) target=photoswipe}} />
+                  </div>
+                {{/if}}
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      {{/photo-swipe}}
+
+      <p>Fork me on <a href="https://github.com/kaermorchen/ember-photoswipe" title="Ember PhotoSwipe">github</a>.</p>
+    </div>
+  </div>
+</div>
+

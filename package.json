@@ -1,6 +1,6 @@
 {
   "name": "ember-photoswipe",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "An Ember addon for using Photoswipe in Ember applications.",
   "keywords": [
     "ember-addon",
@@ -68,6 +68,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "defaultBlueprint": "ember-photoswipe"
+    "defaultBlueprint": "ember-photoswipe",
+    "demoURL": "https://kaermorchen.github.io/ember-photoswipe/"
   }
 }

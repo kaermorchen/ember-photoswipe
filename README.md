@@ -7,7 +7,9 @@
 
 An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
 
-[Demo](https://kaermorchen.github.io/ember-photoswipe/)
+## Demo
+![Ember PhotoSwipe Demo](/tests/dummy/public/assets/images/demo-preview.png)
+[Ember PhotoSwipe Demo](https://kaermorchen.github.io/ember-photoswipe/)
 
 ## Getting Started
 

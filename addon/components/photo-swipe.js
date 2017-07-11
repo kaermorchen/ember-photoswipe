@@ -70,7 +70,7 @@ export default Ember.Component.extend({
 
   pswp: null,
   items: null,
-  itemProperties: ['src', 'h', 'w'],
+  itemProperties: ['src', 'h', 'w', 'title', 'html'],
 
   options: computed(function () {
     const pswpOptions = this.get('pswpOptions');

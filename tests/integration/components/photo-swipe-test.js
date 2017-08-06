@@ -30,7 +30,7 @@ test('pswpOptions is passed', function (assert) {
   const done = assert.async();
 
   this.set('items', [{
-    src: 'https://unsplash.it/1024/768/?random&image1',
+    src: 'http://lorempixel.com/1024/768/nature/1',
     w: 1024,
     h: 768,
   }]);
@@ -53,7 +53,7 @@ test('should be trigger action', function (assert) {
   const done = assert.async();
 
   this.set('items', [{
-    src: 'https://unsplash.it/1024/768/?random&image1',
+    src: 'http://lorempixel.com/1024/768/nature/1',
     w: 1024,
     h: 768,
   }]);
@@ -79,7 +79,7 @@ test('pass items only', function (assert) {
   const done = assert.async();
 
   this.set('items', [{
-    src: 'https://unsplash.it/1024/768/?random&image1',
+    src: 'http://lorempixel.com/1024/768/nature/1',
     w: 1024,
     h: 768,
   }]);
@@ -104,12 +104,12 @@ test('pass items and options', function (assert) {
   const done = assert.async();
 
   this.set('items', [{
-    src: 'https://unsplash.it/1024/768/?random&image1',
+    src: 'http://lorempixel.com/1024/768/nature/1',
     w: 1024,
     h: 768,
   },
   {
-    src: 'https://unsplash.it/1024/768/?random&image2',
+    src: 'http://lorempixel.com/1024/768/nature/2',
     w: 768,
     h: 1024,
   }]);
@@ -136,12 +136,12 @@ test('pass options only', function (assert) {
   const done = assert.async();
 
   this.set('items', [{
-    src: 'https://unsplash.it/1024/768/?random&image1',
+    src: 'http://lorempixel.com/1024/768/nature/1',
     w: 1024,
     h: 768,
   },
   {
-    src: 'https://unsplash.it/1024/768/?random&image2',
+    src: 'http://lorempixel.com/1024/768/nature/2',
     w: 768,
     h: 1024,
   }]);
@@ -171,12 +171,12 @@ test('pass items of Ember.Object', function (assert) {
 
   this.set('items', [
     Item.create({
-      path: 'https://unsplash.it/1024/768/?random&image1',
+      path: 'http://lorempixel.com/1024/768/nature/1',
       w: 1024,
       h: 768,
     }),
     Item.create({
-      path: 'https://unsplash.it/1024/768/?random&image2',
+      path: 'http://lorempixel.com/1024/768/nature/2',
       w: 768,
       h: 1024,
     })

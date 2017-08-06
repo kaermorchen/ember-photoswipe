@@ -5,12 +5,13 @@ import Ember from 'ember';
 import layout from '../templates/components/photo-swipe';
 
 const {
+  A,
   assign,
   getProperties,
   computed,
-  isArray,
   isPresent,
-  String: { classify }
+  String: { classify },
+  typeOf
 } = Ember;
 
 export default Ember.Component.extend({
@@ -72,6 +73,18 @@ export default Ember.Component.extend({
   items: null,
   itemProperties: ['src', 'h', 'w'],
 
+  init() {
+    this._super(...arguments);
+
+    if (!this.get('items')) {
+      this.set('items', A([]));
+    }
+
+    this.set('actions', {
+      open: this.open.bind(this)
+    });
+  },
+
   options: computed(function () {
     const pswpOptions = this.get('pswpOptions');
     const options = {};
@@ -115,42 +128,36 @@ export default Ember.Component.extend({
     this._super(...arguments);
   },
 
-  actions: {
-    open(arg1, arg2) {
-      let items;
-      let actionOptions;
-      let pswp;
-      let assignedOptions;
-      const itemProperties = this.get('itemProperties');
-      const pswpElement = this.$('.pswp')[0];
-      const options = this.get('options');
+  open(arg1, arg2) {
+    let items = this.get('items');
+    let actionOptions;
+    let pswp;
+    let assignedOptions;
+    const itemProperties = this.get('itemProperties');
+    const pswpElement = this.$('.pswp')[0];
+    const options = this.get('options');
 
-      if (arguments.length === 2) {
-        items = arg1;
-        actionOptions = arg2;
-      } else if (arguments.length === 1) {
-        if (isArray(arg1)) {
-          items = arg1;
-        } else {
-          items = this.get('items');
-          actionOptions = arg1;
-        }
-      } else {
-        items = this.get('items');
-      }
-
-      items = items.map(function(item) {
-        return getProperties(item, itemProperties);
-      });
-
-      assignedOptions = assign({}, options, actionOptions);
-      pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
-
-      pswp.init();
-
-      this.set('pswp', pswp);
-
-      this._addEventListeners(pswp);
+    if (typeOf(arg1) === 'array') {
+      items = arg1;
+    } else if (typeOf(arg1) === 'object' && !(arg1 instanceof Event)) {
+      actionOptions = arg1;
     }
+
+    if (typeOf(arg2) === 'object' && !(arg2 instanceof Event)) {
+      actionOptions = arg2;
+    }
+
+    items = items.map(function(item) {
+      return getProperties(item, itemProperties);
+    });
+
+    assignedOptions = assign({}, options, actionOptions);
+    pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
+
+    pswp.init();
+
+    this.set('pswp', pswp);
+
+    this._addEventListeners(pswp);
   }
 });

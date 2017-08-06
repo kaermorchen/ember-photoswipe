@@ -37,17 +37,17 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   items: [
     {
-      src: 'https://unsplash.it/1024/768/?random&image1',
+      src: 'http://lorempixel.com/1024/768/nature/1',
       w: 1024,
       h: 768,
     },
     {
-      src: 'https://unsplash.it/768/1024/?random&image2',
+      src: 'http://lorempixel.com/768/1024/nature/2',
       w: 768,
       h: 1024,
     },
     {
-      src: 'https://unsplash.it/768/768/?random&image3',
+      src: 'http://lorempixel.com/768/768/nature/3',
       w: 768,
       h: 768,
     },
@@ -63,27 +63,7 @@ You can pass items and photoswipe options directly into photo-swipe component
 // app/templates/application.hbs
 {{#photo-swipe items=items history=false as |photoswipe|}}
   {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action 'open' target=photoswipe}} />
-  {{/each}}
-{{/photo-swipe}}
-```
-
-Or you can pass items and options to action
-
-```
-{{#photo-swipe as |photoswipe|}}
-  {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action 'open' items (hash history=false) target=photoswipe}} />
-  {{/each}}
-{{/photo-swipe}}
-```
-
-Or you can pass to action options only, it will be usefull for open clicked image
-
-```
-{{#photo-swipe items=items history=false as |photoswipe|}}
-  {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action 'open' (hash index=index) target=photoswipe}} />
+    <img class="preview" src={{item.src}} {{action photoswipe.actions.open (hash index=index)}} />
   {{/each}}
 {{/photo-swipe}}
 ```
@@ -97,7 +77,7 @@ Phowo-swipe sends actions based on the corresponding photoswipe [events](http://
 ```
 {{#photo-swipe onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}
   {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action 'open' items (hash index=index) target=photoswipe}} />
+    <img class="preview" src={{item.src}} {{action photoswipe.actions.open items (hash index=index) target=photoswipe}} />
   {{/each}}
 {{/photo-swipe}}
 ```

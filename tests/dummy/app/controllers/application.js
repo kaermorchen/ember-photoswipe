@@ -4,7 +4,7 @@ const { A, computed } = Ember;
 
 const Item = Ember.Object.extend({
   src: computed('id', 'w', 'h', function() {
-    return `https://unsplash.it/${this.get('w')}/${this.get('h')}/?random&image${this.get('id')}`;
+    return `https://lorempixel.com/${this.get('w')}/${this.get('h')}/nature/${this.get('id')}`;
   })
 });
 

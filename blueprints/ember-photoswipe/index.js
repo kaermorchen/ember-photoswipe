@@ -3,7 +3,9 @@ module.exports = {
     return entityName || "ember-photoswipe";
   },
 
-  afterInstall: function() {
-    return this.addBowerPackageToProject('photoswipe', '^4.1.1');
+  afterInstall: function () {
+    return this.addPackagesToProject([
+      { name: 'photoswipe', target: '^4.1.2' }
+    ]);
   }
 };

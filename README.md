@@ -1,7 +1,7 @@
 # Ember PhotoSwipe
 
-[![npm version](https://badge.fury.io/js/ember-photoswipe.svg)](http://badge.fury.io/js/ember-photoswipe)
-[![npm](https://img.shields.io/npm/dm/ember-photoswipe.svg)]()
+[![npm version](https://badge.fury.io/js/ember-photoswipe.svg)](https://github.com/kaermorchen/ember-photoswipe)
+[![npm monthly downloads](https://img.shields.io/npm/dm/ember-photoswipe.svg)](https://github.com/kaermorchen/ember-photoswipe)
 [![Ember Observer Score](https://emberobserver.com/badges/ember-photoswipe.svg)](https://emberobserver.com/addons/ember-photoswipe)
 [![Build Status](https://travis-ci.org/kaermorchen/ember-photoswipe.svg?branch=master)](https://travis-ci.org/kaermorchen/ember-photoswipe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)

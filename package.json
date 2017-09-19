@@ -1,6 +1,6 @@
 {
   "name": "ember-photoswipe",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "An Ember addon for using Photoswipe in Ember applications.",
   "keywords": [
     "ember-addon",

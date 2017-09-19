@@ -47,7 +47,7 @@ test('pswpOptions is passed', function (assert) {
   this.$('button').click();
 });
 
-test('pswpUIOptions is passed', async function (assert) {
+test('pswpUIOptions is passed', function (assert) {
   assert.expect(1);
   const done = assert.async();
 

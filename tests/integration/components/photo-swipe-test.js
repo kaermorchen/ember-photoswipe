@@ -7,7 +7,6 @@ moduleForComponent('photo-swipe', 'Integration | Component | photo swipe', {
 });
 
 test('it renders', function (assert) {
-
   // Set any properties with this.set('myProperty', 'value');
   // Handle any actions with this.on('myAction', function(val) { ... });
 
@@ -45,6 +44,30 @@ test('pswpOptions is passed', function (assert) {
       <button {{action 'open' items target=photoSwipe}}>Aaaaaaaaaaaaand Open</button>
     {{/photo-swipe}}
   `);
+  this.$('button').click();
+});
+
+test('pswpUIOptions is passed', async function (assert) {
+  assert.expect(1);
+  const done = assert.async();
+
+  this.set('items', [{
+    src: 'http://lorempixel.com/1024/768/nature/1',
+    w: 1024,
+    h: 768,
+  }]);
+
+  this.set('onInitialZoomInEnd', () => {
+    assert.ok(this.$('.pswp__button.pswp__button--close').hasClass('pswp__element--disabled'));
+    done();
+  });
+
+  this.render(hbs`
+    {{#photo-swipe items=items closeEl=false onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoSwipe|}}
+      <button {{action photoSwipe.actions.open}}>Aaaaaaaaaaaaand Open</button>
+    {{/photo-swipe}}
+  `);
+
   this.$('button').click();
 });
 

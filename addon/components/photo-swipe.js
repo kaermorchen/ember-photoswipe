@@ -17,7 +17,7 @@ const {
 export default Ember.Component.extend({
   layout,
 
-  concatenatedProperties: ['pswpOptions', 'pswpEvents', 'itemProperties'],
+  concatenatedProperties: ['pswpOptions', 'pswpUIOptions', 'pswpEvents', 'itemProperties'],
 
   pswpOptions: [
     'index',
@@ -47,6 +47,32 @@ export default Ember.Component.extend({
     'focus',
     'isClickableElement',
     'modal',
+  ],
+
+  pswpUIOptions: [
+    'barsSize',
+    'timeToIdle',
+    'timeToIdleOutside',
+    'loadingIndicatorDelay',
+    'addCaptionHTMLFn',
+    'closeEl',
+    'captionEl',
+    'fullscreenEl',
+    'zoomEl',
+    'shareEl',
+    'counterEl',
+    'arrowEl',
+    'preloaderEl',
+    'tapToClose',
+    'tapToToggleControls',
+    'clickToCloseNonZoomable',
+    'closeElClasses',
+    'indexIndicatorSep',
+    'shareButtons',
+    'getImageURLForShare',
+    'getPageURLForShare',
+    'getTextForShare',
+    'parseShareButtonOut',
   ],
 
   pswpEvents: [
@@ -87,9 +113,16 @@ export default Ember.Component.extend({
 
   options: computed(function () {
     const pswpOptions = this.get('pswpOptions');
+    const pswpUIOptions = this.get('pswpUIOptions');
     const options = {};
 
     pswpOptions.forEach((optionName) => {
+      if (this.get(optionName) !== undefined) {
+        options[optionName] = this.get(optionName);
+      }
+    });
+
+    pswpUIOptions.forEach((optionName) => {
       if (this.get(optionName) !== undefined) {
         options[optionName] = this.get(optionName);
       }

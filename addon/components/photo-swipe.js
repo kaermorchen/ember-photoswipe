@@ -1,20 +1,16 @@
 /* global PhotoSwipe */
 /* global PhotoSwipeUI_Default */
 
-import Ember from 'ember';
+import Component from '@ember/component';
+
+import { A } from '@ember/array';
+import { assign } from '@ember/polyfills';
+import { computed, getProperties } from '@ember/object';
+import { classify } from '@ember/string';
+import { typeOf, isPresent } from '@ember/utils';
 import layout from '../templates/components/photo-swipe';
 
-const {
-  A,
-  assign,
-  getProperties,
-  computed,
-  isPresent,
-  String: { classify },
-  typeOf
-} = Ember;
-
-export default Ember.Component.extend({
+export default Component.extend({
   layout,
 
   concatenatedProperties: ['pswpOptions', 'pswpUIOptions', 'pswpEvents', 'itemProperties'],

@@ -1,4 +1,5 @@
-import Ember from 'ember';
+import { alias } from '@ember/object/computed';
+import EmberObject from '@ember/object';
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
@@ -188,8 +189,8 @@ test('pass items of Ember.Object', function (assert) {
   assert.expect(1);
   const done = assert.async();
 
-  const Item = Ember.Object.extend({
-    src: Ember.computed.alias('path')
+  const Item = EmberObject.extend({
+    src: alias('path')
   });
 
   this.set('items', [

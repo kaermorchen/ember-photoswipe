@@ -1,14 +1,14 @@
-import Ember from 'ember';
+import Controller from '@ember/controller';
+import { A } from '@ember/array';
+import EmberObject, { computed } from '@ember/object';
 
-const { A, computed } = Ember;
-
-const Item = Ember.Object.extend({
+const Item = EmberObject.extend({
   src: computed('id', 'w', 'h', function() {
     return `https://lorempixel.com/${this.get('w')}/${this.get('h')}/nature/${this.get('id')}`;
   })
 });
 
-export default Ember.Controller.extend({
+export default Controller.extend({
   items: A([
     Item.create({
       id: 1,

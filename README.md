@@ -1,10 +1,12 @@
-# Ember PhotoSwipe
+<h1 align="center">Ember PhotoSwipe</h1>
 
-[![npm version](https://badge.fury.io/js/ember-photoswipe.svg)](https://github.com/kaermorchen/ember-photoswipe)
-[![npm monthly downloads](https://img.shields.io/npm/dm/ember-photoswipe.svg)](https://github.com/kaermorchen/ember-photoswipe)
-[![Ember Observer Score](https://emberobserver.com/badges/ember-photoswipe.svg)](https://emberobserver.com/addons/ember-photoswipe)
-[![Build Status](https://travis-ci.org/kaermorchen/ember-photoswipe.svg?branch=master)](https://travis-ci.org/kaermorchen/ember-photoswipe)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<p align="center">
+  <a href="https://www.npmjs.com/package/ember-photoswipe"><img src="https://img.shields.io/npm/v/ember-photoswipe.svg?style=flat-square&colorB=44cc11" alt="npm version"></a>
+  <a href="https://www.npmjs.com/package/ember-photoswipe"><img src="https://img.shields.io/npm/dm/ember-photoswipe.svg?style=flat-square" alt="npm monthly downloads"></a>  
+  <a href="https://travis-ci.org/kaermorchen/ember-photoswipe"><img src="https://img.shields.io/travis/kaermorchen/ember-photoswipe.svg?style=flat-square" alt="Build Status"></a>
+  <a href="https://emberobserver.com/addons/ember-photoswipe"><img src="https://emberobserver.com/badges/ember-photoswipe.svg" alt="Ember Observer Score"></a>
+  <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License: MIT"></a>
+</p>
 
 An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
 

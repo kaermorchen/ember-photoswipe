@@ -19,13 +19,13 @@ An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://pho
 
 Install in ember-cli application
 
-```
+```bash
 ember install ember-photoswipe
 ```
 
 Then include the following in your `app.scss` file:
 
-```
+```scss
 @import "ember-photoswipe";
 ```
 
@@ -33,7 +33,7 @@ Then include the following in your `app.scss` file:
 
 We have array of javascript objects, but you can use array of Ember.Objects too. Inside photo-swipe all required properties will be to take through getProperties.
 
-```
+```js
 // app/controller/application.js
 import Ember from 'ember';
 
@@ -62,7 +62,7 @@ export default Ember.Controller.extend({
 
 You can pass items and photoswipe options directly into photo-swipe component
 
-```
+```mustache
 // app/templates/application.hbs
 {{#photo-swipe items=items history=false as |photoswipe|}}
   {{#each items as |item index|}}
@@ -77,7 +77,7 @@ All list of options is available [here](http://photoswipe.com/documentation/opti
 
 Phowo-swipe sends actions based on the corresponding photoswipe [events](http://photoswipe.com/documentation/api.html).
 
-```
+```mustache
 {{#photo-swipe onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}
   {{#each items as |item index|}}
     <img class="preview" src={{item.src}} {{action photoswipe.actions.open items (hash index=index) target=photoswipe}} />
@@ -91,7 +91,7 @@ Phowo-swipe sends actions based on the corresponding photoswipe [events](http://
 
 You can use custom PhotoSwipe variables.
 
-```
+```scss
 //We use $pswp__assets-path becouse images of default-skin stored in assets/images folder
 $pswp__assets-path: 'images/';
 @import "ember-photoswipe/main.scss";

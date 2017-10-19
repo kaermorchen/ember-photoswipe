@@ -66,7 +66,7 @@ You can pass items and photoswipe options directly into photo-swipe component
 // app/templates/application.hbs
 {{#photo-swipe items=items history=false as |photoswipe|}}
   {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action photoswipe.actions.open (hash index=index)}} />
+    <img src={{item.src}} {{action photoswipe.actions.open (hash index=index)}} />
   {{/each}}
 {{/photo-swipe}}
 ```
@@ -78,9 +78,9 @@ All list of options is available [here](http://photoswipe.com/documentation/opti
 Phowo-swipe sends actions based on the corresponding photoswipe [events](http://photoswipe.com/documentation/api.html).
 
 ```mustache
-{{#photo-swipe onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}
+{{#photo-swipe items=items onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}
   {{#each items as |item index|}}
-    <img class="preview" src={{item.src}} {{action photoswipe.actions.open items (hash index=index) target=photoswipe}} />
+    <img src={{item.src}} {{action photoswipe.actions.open (hash index=index)}} />
   {{/each}}
 {{/photo-swipe}}
 ```

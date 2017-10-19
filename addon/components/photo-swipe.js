@@ -7,7 +7,7 @@ import { A } from '@ember/array';
 import { assign } from '@ember/polyfills';
 import { computed, getProperties } from '@ember/object';
 import { classify } from '@ember/string';
-import { typeOf, isPresent } from '@ember/utils';
+import { isPresent } from '@ember/utils';
 import layout from '../templates/components/photo-swipe';
 
 export default Component.extend({
@@ -157,24 +157,13 @@ export default Component.extend({
     this._super(...arguments);
   },
 
-  open(arg1, arg2) {
+  open(actionOptions) {
     let items = this.get('items');
-    let actionOptions;
-    let pswp;
-    let assignedOptions;
     const itemProperties = this.get('itemProperties');
-    const pswpElement = this.$('.pswp')[0];
+    const pswpElement = this.get('element').querySelector('.pswp');
     const options = this.get('options');
-
-    if (typeOf(arg1) === 'array') {
-      items = arg1;
-    } else if (typeOf(arg1) === 'object' && !(arg1 instanceof Event)) {
-      actionOptions = arg1;
-    }
-
-    if (typeOf(arg2) === 'object' && !(arg2 instanceof Event)) {
-      actionOptions = arg2;
-    }
+    let assignedOptions;
+    let pswp;
 
     items = items.map(function(item) {
       return getProperties(item, itemProperties);

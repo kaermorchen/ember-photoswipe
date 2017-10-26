@@ -98,5 +98,19 @@ $pswp__assets-path: 'images/';
 @import "ember-photoswipe/default-skin/default-skin.scss";
 ```
 
+### System-wide config
+If you want to apply some options to all your photo-swipe components, you need create the `photo-swipe` component and apply options inside it:
+
+```js
+import PhotoSwipe from 'ember-photoswipe/components/photo-swipe';
+
+export default PhotoSwipe.extend({
+  // Place here your preferences
+  itemProperties: ['name'],
+  history: false,
+  bgOpacity: 0.7
+});
+```
+
 ## License
 ember-photoswipe is released under the MIT License. See the bundled [LICENSE](LICENSE.md) file for details.

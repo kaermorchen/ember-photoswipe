@@ -15,7 +15,7 @@ export default Component.extend({
 
   concatenatedProperties: ['pswpOptions', 'pswpUIOptions', 'pswpEvents', 'itemProperties'],
 
-  pswpOptions: [
+  pswpOptions: [ // eslint-disable-line
     'index',
     'getThumbBoundsFn',
     'showHideOpacity',
@@ -45,7 +45,7 @@ export default Component.extend({
     'modal',
   ],
 
-  pswpUIOptions: [
+  pswpUIOptions: [ // eslint-disable-line
     'barsSize',
     'timeToIdle',
     'timeToIdleOutside',
@@ -71,7 +71,7 @@ export default Component.extend({
     'parseShareButtonOut',
   ],
 
-  pswpEvents: [
+  pswpEvents: [ // eslint-disable-line
     'beforeChange',
     'afterChange',
     'imageLoadComplete',
@@ -93,7 +93,7 @@ export default Component.extend({
 
   pswp: null,
   items: null,
-  itemProperties: ['src', 'h', 'w'],
+  itemProperties: ['src', 'h', 'w'], // eslint-disable-line
 
   init() {
     this._super(...arguments);
@@ -140,7 +140,11 @@ export default Component.extend({
       let actionName = 'on' + classify(eventName);
 
       pswp.listen(eventName, () => {
-        this.sendAction(actionName, ...arguments);
+        const action = this.get(actionName);
+
+        if (action) {
+          action(...arguments);
+        }
       });
     });
   },

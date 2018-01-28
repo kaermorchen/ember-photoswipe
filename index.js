@@ -2,7 +2,7 @@
 
 var path = require('path');
 var Funnel = require('broccoli-funnel');
-var mergeTrees = require('broccoli-merge-trees');
+var BroccoliMergeTrees = require('broccoli-merge-trees');
 var fastbootTransform = require('fastboot-transform');
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
       styleTrees.push(tree);
     }
 
-    return mergeTrees(styleTrees, { overwrite: true });
+    return new BroccoliMergeTrees(styleTrees, { overwrite: true });
   },
 
   treeForPublic: function() {

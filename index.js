@@ -8,21 +8,28 @@ var fastbootTransform = require('fastboot-transform');
 module.exports = {
   name: 'ember-photoswipe',
 
-  options: {
-    nodeAssets: {
-      photoswipe: {
-        srcDir: 'dist',
-        import: {
-          include: ['photoswipe.js', 'photoswipe-ui-default.js']
-        },
-        processTree(input) {
-          return fastbootTransform(input);
-        }
-      }
-    }
+  included(app) {
+    this._super.included(app);
+
+    var distPath = path.join('node_modules', 'photoswipe', 'dist');
+    var importOptions = {
+      using: [{
+        transformation: 'fastbootShim'
+      }]
+    };
+
+    app.import({
+      development: path.join(distPath, 'photoswipe.js'),
+      production: path.join(distPath, 'photoswipe.min.js'),
+    }, importOptions);
+
+    app.import({
+      development: path.join(distPath, 'photoswipe-ui-default.js'),
+      production: path.join(distPath, 'photoswipe-ui-default.min.js'),
+    }, importOptions);
   },
 
-  treeForStyles: function treeForStyles(tree) {
+  treeForStyles(tree) {
     var styleTrees = [];
 
     if (this.app.project.findAddonByName('ember-cli-sass')) {
@@ -40,7 +47,7 @@ module.exports = {
     return new BroccoliMergeTrees(styleTrees, { overwrite: true });
   },
 
-  treeForPublic: function() {
+  treeForPublic() {
     var defaultSkinPath = path.join('node_modules', 'photoswipe', 'dist', 'default-skin');
 
     var publicTree = new Funnel(this.treeGenerator(defaultSkinPath), {
@@ -50,5 +57,11 @@ module.exports = {
     });
 
     return publicTree;
+  },
+
+  importTransforms() {
+    return {
+      fastbootShim: fastbootTransform
+    }
   }
 };

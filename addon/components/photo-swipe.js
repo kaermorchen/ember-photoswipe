@@ -112,13 +112,13 @@ export default Component.extend({
     const pswpUIOptions = this.get('pswpUIOptions');
     const options = {};
 
-    pswpOptions.forEach((optionName) => {
+    pswpOptions.forEach(optionName => {
       if (this.get(optionName) !== undefined) {
         options[optionName] = this.get(optionName);
       }
     });
 
-    pswpUIOptions.forEach((optionName) => {
+    pswpUIOptions.forEach(optionName => {
       if (this.get(optionName) !== undefined) {
         options[optionName] = this.get(optionName);
       }
@@ -128,7 +128,7 @@ export default Component.extend({
   }),
 
   usedPswpEvents: computed('pswpEvents', function () {
-    return this.get('pswpEvents').filter((eventName) => {
+    return this.get('pswpEvents').filter(eventName => {
       let actionName = 'on' + classify(eventName);
 
       return this.get(actionName) !== undefined;
@@ -162,10 +162,10 @@ export default Component.extend({
   },
 
   open(actionOptions) {
-    let items = this.get('items');
     const itemProperties = this.get('itemProperties');
     const pswpElement = this.get('element').querySelector('.pswp');
     const options = this.get('options');
+    let items = this.get('items');
     let assignedOptions;
     let pswp;
 

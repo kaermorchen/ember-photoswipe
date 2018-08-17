@@ -8,12 +8,9 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License: MIT"></a>
 </p>
 
-An [ember-cli](https://www.ember-cli.com) addon for using [PhotoSwipe](https://photoswipe.com/) in Ember applications.
+An [ember-cli](https://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
 
-## Demo
-
-[Demo](https://kaermorchen.github.io/ember-photoswipe/)
-[![Ember PhotoSwipe Demo](https://kaermorchen.github.io/ember-photoswipe/assets/images/demo-preview.png)](https://kaermorchen.github.io/ember-photoswipe/)
+## [Demo](https://kaermorchen.github.io/ember-photoswipe/)
 
 ## Getting Started
 

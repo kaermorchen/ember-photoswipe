@@ -4,7 +4,7 @@ import EmberObject, { computed } from '@ember/object';
 
 const Item = EmberObject.extend({
   src: computed('id', 'w', 'h', function() {
-    return `https://lorempixel.com/${this.get('w')}/${this.get('h')}/nature/${this.get('id')}`;
+    return `https://picsum.photos/${this.get('w')}/${this.get('h')}?random&id=${this.get('id')}`;
   })
 });
 

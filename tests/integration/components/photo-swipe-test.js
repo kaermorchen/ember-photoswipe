@@ -19,7 +19,7 @@ module('Integration | Component | photo swipe', function (hooks) {
     const done = assert.async();
 
     this.set('items', [{
-      src: 'http://lorempixel.com/1024/768/nature/1',
+      src: 'https://picsum.photos/1024/768?image=0',
       w: 1024,
       h: 768,
     }]);
@@ -43,7 +43,7 @@ module('Integration | Component | photo swipe', function (hooks) {
     const done = assert.async();
 
     this.set('items', [{
-      src: 'http://lorempixel.com/1024/768/nature/1',
+      src: 'https://picsum.photos/1024/768?image=0',
       w: 1024,
       h: 768,
     }]);
@@ -67,7 +67,7 @@ module('Integration | Component | photo swipe', function (hooks) {
     const done = assert.async();
 
     this.set('items', [{
-      src: 'http://lorempixel.com/1024/768/nature/1',
+      src: 'https://picsum.photos/1024/768?image=0',
       w: 1024,
       h: 768,
     }]);
@@ -91,11 +91,11 @@ module('Integration | Component | photo swipe', function (hooks) {
     const done = assert.async();
 
     this.set('items', [{
-      src: 'http://lorempixel.com/1024/768/nature/1',
+      src: 'https://picsum.photos/1024/768?image=0',
       w: 1024,
       h: 768,
     }, {
-      src: 'http://lorempixel.com/768/1024/nature/2',
+      src: 'https://picsum.photos/768/1024/nature/2',
       w: 768,
       h: 1024,
     }]);
@@ -124,12 +124,12 @@ module('Integration | Component | photo swipe', function (hooks) {
 
     this.set('items', [
       Item.create({
-        path: 'http://lorempixel.com/1024/768/nature/1',
+        path: 'https://picsum.photos/1024/768?image=0',
         w: 1024,
         h: 768,
       }),
       Item.create({
-        path: 'http://lorempixel.com/1024/768/nature/2',
+        path: 'https://picsum.photos/1024/768/nature/2',
         w: 768,
         h: 1024,
       })

@@ -8,7 +8,7 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License: MIT"></a>
 </p>
 
-An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
+An [ember-cli](https://www.ember-cli.com) addon for using [PhotoSwipe](https://photoswipe.com/) in Ember applications.
 
 ## Demo
 
@@ -71,11 +71,11 @@ You can pass items and photoswipe options directly into photo-swipe component
 {{/photo-swipe}}
 ```
 
-All list of options is available [here](http://photoswipe.com/documentation/options.html).
+All list of options is available [here](https://photoswipe.com/documentation/options.html).
 
 ### Event
 
-Phowo-swipe sends actions based on the corresponding photoswipe [events](http://photoswipe.com/documentation/api.html).
+Phowo-swipe sends actions based on the corresponding photoswipe [events](https://photoswipe.com/documentation/api.html).
 
 ```mustache
 {{#photo-swipe items=items onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}

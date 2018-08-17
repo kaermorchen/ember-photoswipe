@@ -8,12 +8,9 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License: MIT"></a>
 </p>
 
-An [ember-cli](http://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
+An [ember-cli](https://www.ember-cli.com) addon for using [PhotoSwipe](http://photoswipe.com/) in Ember applications.
 
-## Demo
-
-[Demo](https://kaermorchen.github.io/ember-photoswipe/)
-[![Ember PhotoSwipe Demo](https://kaermorchen.github.io/ember-photoswipe/assets/images/demo-preview.png)](https://kaermorchen.github.io/ember-photoswipe/)
+## [Demo](https://kaermorchen.github.io/ember-photoswipe/)
 
 ## Getting Started
 
@@ -40,17 +37,17 @@ import Ember from 'ember';
 export default Ember.Controller.extend({
   items: [
     {
-      src: 'http://lorempixel.com/1024/768/nature/1',
+      src: 'https://picsum.photos/1024/768?image=42',
       w: 1024,
       h: 768,
     },
     {
-      src: 'http://lorempixel.com/768/1024/nature/2',
+      src: 'https://picsum.photos/768/1024?image=80',
       w: 768,
       h: 1024,
     },
     {
-      src: 'http://lorempixel.com/768/768/nature/3',
+      src: 'https://picsum.photos/768/768?image=108',
       w: 768,
       h: 768,
     },
@@ -71,11 +68,11 @@ You can pass items and photoswipe options directly into photo-swipe component
 {{/photo-swipe}}
 ```
 
-All list of options is available [here](http://photoswipe.com/documentation/options.html).
+All list of options is available [here](https://photoswipe.com/documentation/options.html).
 
 ### Event
 
-Phowo-swipe sends actions based on the corresponding photoswipe [events](http://photoswipe.com/documentation/api.html).
+Phowo-swipe sends actions based on the corresponding photoswipe [events](https://photoswipe.com/documentation/api.html).
 
 ```mustache
 {{#photo-swipe items=items onInitialZoomInEnd=(action "onInitialZoomInEnd") as |photoswipe|}}

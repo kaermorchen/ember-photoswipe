@@ -6,7 +6,7 @@ var BroccoliMergeTrees = require('broccoli-merge-trees');
 var fastbootTransform = require('fastboot-transform');
 
 module.exports = {
-  name: 'ember-photoswipe',
+  name: require('./package').name,
 
   included(app) {
     this._super.included(app);

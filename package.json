@@ -43,6 +43,7 @@
     "ember-cli-sass": "^9.0.1",
     "fastboot-transform": "^0.1.2",
     "photoswipe": "^4.1.2",
+    "resolve": "^1.8.1",
     "sass": "^1.16.1"
   },
   "devDependencies": {

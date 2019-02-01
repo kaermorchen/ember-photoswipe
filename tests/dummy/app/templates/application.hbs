@@ -8,14 +8,14 @@
       {{#photo-swipe items=items history=false as |photoswipe|}}
         <div class="row">
           <div class="col-12 col-md-6 mb-4">
-            <img class="img-fluid" src={{items.firstObject.src}} onclick={{action photoswipe.actions.open (hash index=index)}} />
+            <img src={{items.firstObject.src}} onclick={{action photoswipe.actions.open (hash index=index)}} class="img-fluid" alt="" role="button">
           </div>
           <div class="col-12 col-md-6">
             <div class="row">
               {{#each items as |item index|}}
                 {{#if index}}
                   <div class="col-12 col-md-6 mb-4">
-                    <img class="img-fluid" src={{item.src}} {{action photoswipe.actions.open (hash index=index)}} />
+                    <img src={{item.src}} onclick={{action photoswipe.actions.open (hash index=index)}} class="img-fluid" alt="" role="button">
                   </div>
                 {{/if}}
               {{/each}}

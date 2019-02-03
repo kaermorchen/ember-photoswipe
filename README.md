@@ -12,6 +12,12 @@ An [ember-cli](https://www.ember-cli.com) addon for using [PhotoSwipe](http://ph
 
 ## [Demo](https://kaermorchen.github.io/ember-photoswipe/)
 
+Compatibility
+------------------------------------------------------------------------------
+
+* Ember.js v2.18 or above
+* Ember CLI v2.13 or above
+
 ## Getting Started
 
 Install in ember-cli application

@@ -1,9 +1,9 @@
 module.exports = {
-  normalizeEntityName: function (entityName) {
+  normalizeEntityName(entityName) {
     return entityName || "ember-photoswipe";
   },
 
-  afterInstall: function () {
+  afterInstall() {
     return this.addPackagesToProject([
       { name: 'photoswipe', target: '^4.1.2' }
     ]);

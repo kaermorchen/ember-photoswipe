@@ -2,7 +2,6 @@
 /* global PhotoSwipeUI_Default */
 
 import Component from '@ember/component';
-
 import { A } from '@ember/array';
 import { assign } from '@ember/polyfills';
 import { computed, getProperties } from '@ember/object';

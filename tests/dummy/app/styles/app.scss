@@ -1,3 +1,12 @@
+@import "ember-cli-bootstrap-4/functions";
+@import "ember-cli-bootstrap-4/variables";
+@import "ember-cli-bootstrap-4/mixins";
+@import "ember-cli-bootstrap-4/root";
+@import "ember-cli-bootstrap-4/reboot";
+@import "ember-cli-bootstrap-4/images";
+@import "ember-cli-bootstrap-4/grid";
+@import "ember-cli-bootstrap-4/utilities";
+
 @import "ember-photoswipe";
 
 html, body,

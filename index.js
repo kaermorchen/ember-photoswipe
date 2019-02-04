@@ -1,57 +1,67 @@
 'use strict';
 
-var path = require('path');
-var Funnel = require('broccoli-funnel');
-var BroccoliMergeTrees = require('broccoli-merge-trees');
-var fastbootTransform = require('fastboot-transform');
+const path = require('path');
+const Funnel = require('broccoli-funnel');
+const mergeTrees = require('broccoli-merge-trees');
+const fastbootTransform = require('fastboot-transform');
+const resolve = require('resolve');
 
 module.exports = {
-  name: 'ember-photoswipe',
+  name: require('./package').name,
 
-  included(app) {
-    this._super.included(app);
+  included() {
+    this._super.included.apply(this, arguments);
+    this._ensureFindHost();
 
-    var distPath = path.join('node_modules', 'photoswipe', 'dist');
-    var importOptions = {
-      using: [{
-        transformation: 'fastbootShim'
-      }]
-    };
+    const vendorPath = `vendor/${this.name}`;
+    const host = this._findHost();
 
-    app.import({
-      development: path.join(distPath, 'photoswipe.js'),
-      production: path.join(distPath, 'photoswipe.min.js'),
-    }, importOptions);
+    host.import({
+      development: path.join(vendorPath, 'photoswipe.js'),
+      production: path.join(vendorPath, 'photoswipe.min.js'),
+    });
 
-    app.import({
-      development: path.join(distPath, 'photoswipe-ui-default.js'),
-      production: path.join(distPath, 'photoswipe-ui-default.min.js'),
-    }, importOptions);
+    host.import({
+      development: path.join(vendorPath, 'photoswipe-ui-default.js'),
+      production: path.join(vendorPath, 'photoswipe-ui-default.min.js'),
+    });
+  },
+
+  treeForVendor() {
+    const photoswipePath = path.join(this.resolvePackagePath('photoswipe'), 'dist');
+    const photoswipeFiles = fastbootTransform(new Funnel(photoswipePath, {
+      files: [
+        'photoswipe.js',
+        'photoswipe.min.js',
+        'photoswipe-ui-default.js',
+        'photoswipe-ui-default.min.js'
+      ],
+      destDir: this.name
+    }));
+
+    return photoswipeFiles;
   },
 
   treeForStyles(tree) {
-    var styleTrees = [];
+    const styleTrees = [];
+    const host = this._findHost();
 
-    if (this.app.project.findAddonByName('ember-cli-sass')) {
-      var sassTree = new Funnel(path.join('node_modules', 'photoswipe', 'src', 'css'), {
-        destDir: 'ember-photoswipe'
-      });
-
-      styleTrees.push(sassTree);
+    if (host.project.findAddonByName('ember-cli-sass')) {
+      styleTrees.push(new Funnel(path.join(this.resolvePackagePath('photoswipe'), 'src', 'css'), {
+        destDir: this.name
+      }));
     }
 
     if (tree) {
       styleTrees.push(tree);
     }
 
-    return new BroccoliMergeTrees(styleTrees, { overwrite: true });
+    return mergeTrees(styleTrees, { overwrite: true });
   },
 
   treeForPublic() {
-    var defaultSkinPath = path.join('node_modules', 'photoswipe', 'dist', 'default-skin');
-
-    var publicTree = new Funnel(this.treeGenerator(defaultSkinPath), {
-      srcDir: '/',
+    const defaultSkinPath = path.join(this.resolvePackagePath('photoswipe'), 'dist', 'default-skin');
+    const publicTree = new Funnel(defaultSkinPath, {
       destDir: '/assets/images',
       exclude: ['default-skin.css']
     });
@@ -59,9 +69,22 @@ module.exports = {
     return publicTree;
   },
 
-  importTransforms() {
-    return {
-      fastbootShim: fastbootTransform
+  resolvePackagePath(packageName) {
+    return path.dirname(resolve.sync(`${packageName}/package.json`, { basedir: this.app.project.root }));
+  },
+
+  _ensureFindHost() {
+    if (!this._findHost) {
+      this._findHost = function findHostShim() {
+        let current = this;
+        let app;
+
+        do {
+          app = current.app || app;
+        } while (current.parent.parent && (current = current.parent));
+
+        return app;
+      };
     }
   }
 };

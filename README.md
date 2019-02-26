@@ -95,7 +95,7 @@ Phowo-swipe sends actions based on the corresponding photoswipe [events](https:/
 You can use custom PhotoSwipe variables.
 
 ```scss
-//We use $pswp__assets-path becouse images of default-skin stored in assets/images folder
+//We use $pswp__assets-path because images of default-skin stored in assets/images folder
 $pswp__assets-path: 'images/';
 @import "ember-photoswipe/main.scss";
 @import "ember-photoswipe/default-skin/default-skin.scss";

@@ -115,5 +115,13 @@ export default PhotoSwipe.extend({
 });
 ```
 
-## License
+Contributing
+------------------------------------------------------------------------------
+
+See the [Contributing](CONTRIBUTING.md) guide for details.
+
+
+License
+------------------------------------------------------------------------------
+
 ember-photoswipe is released under the MIT License. See the bundled [LICENSE](LICENSE.md) file for details.

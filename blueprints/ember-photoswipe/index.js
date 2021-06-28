@@ -4,8 +4,6 @@ module.exports = {
   },
 
   afterInstall() {
-    return this.addPackagesToProject([
-      { name: 'photoswipe', target: '^4.1.2' }
-    ]);
-  }
+    return this.addBowerPackageToProject('photoswipe', '^4.1.2');
+  },
 };

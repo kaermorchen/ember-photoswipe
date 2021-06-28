@@ -2,9 +2,6 @@
 
 const path = require('path');
 const Funnel = require('broccoli-funnel');
-const mergeTrees = require('broccoli-merge-trees');
-const fastbootTransform = require('fastboot-transform');
-const resolve = require('resolve');
 
 module.exports = {
   name: require('./package').name,
@@ -13,64 +10,27 @@ module.exports = {
     this._super.included.apply(this, arguments);
     this._ensureFindHost();
 
-    const vendorPath = `vendor/${this.name}`;
     const host = this._findHost();
+    const psDir = host.bowerDirectory + '/photoswipe';
 
-    host.import({
-      development: path.join(vendorPath, 'photoswipe.js'),
-      production: path.join(vendorPath, 'photoswipe.min.js'),
-    });
-
-    host.import({
-      development: path.join(vendorPath, 'photoswipe-ui-default.js'),
-      production: path.join(vendorPath, 'photoswipe-ui-default.min.js'),
-    });
-  },
-
-  treeForVendor() {
-    const photoswipePath = path.join(this.resolvePackagePath('photoswipe'), 'dist');
-    const photoswipeFiles = fastbootTransform(new Funnel(photoswipePath, {
-      files: [
-        'photoswipe.js',
-        'photoswipe.min.js',
-        'photoswipe-ui-default.js',
-        'photoswipe-ui-default.min.js'
-      ],
-      destDir: this.name
-    }));
-
-    return photoswipeFiles;
-  },
-
-  treeForStyles(tree) {
-    const styleTrees = [];
-    const host = this._findHost();
-
-    if (host.project.findAddonByName('ember-cli-sass')) {
-      styleTrees.push(new Funnel(path.join(this.resolvePackagePath('photoswipe'), 'src', 'css'), {
-        destDir: this.name
-      }));
+    if (!process.env.EMBER_CLI_FASTBOOT) {
+      host.import(psDir + '/dist/photoswipe.css');
+      host.import(psDir + '/dist/default-skin/default-skin.css');
+      host.import(psDir + '/dist/photoswipe.js');
+      host.import(psDir + '/dist/photoswipe-ui-default.min.js');
     }
-
-    if (tree) {
-      styleTrees.push(tree);
-    }
-
-    return mergeTrees(styleTrees, { overwrite: true });
   },
 
   treeForPublic() {
-    const defaultSkinPath = path.join(this.resolvePackagePath('photoswipe'), 'dist', 'default-skin');
-    const publicTree = new Funnel(defaultSkinPath, {
-      destDir: '/assets/images',
+    const host = this._findHost();
+    const defaultSkinPath = path.join(host.bowerDirectory, 'photoswipe', 'dist', 'default-skin');
+    const publicTree = new Funnel(this.treeGenerator(defaultSkinPath), {
+      srcDir: '/',
+      destDir: '/assets',
       exclude: ['default-skin.css']
     });
 
     return publicTree;
-  },
-
-  resolvePackagePath(packageName) {
-    return path.dirname(resolve.sync(`${packageName}/package.json`, { basedir: this.app.project.root }));
   },
 
   _ensureFindHost() {

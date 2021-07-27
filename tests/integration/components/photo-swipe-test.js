@@ -148,4 +148,38 @@ module('Integration | Component | photo swipe', function (hooks) {
 
     await click('.preview');
   });
+
+  test('pass title', async function (assert) {
+    assert.expect(1);
+    const done = assert.async();
+    const title = 'Hello World';
+
+    this.set('items', [
+      {
+        src: 'https://picsum.photos/1024/768?image=0',
+        w: 1024,
+        h: 768,
+        title
+      },
+      {
+        src: 'https://picsum.photos/1024/768/nature/2',
+        w: 768,
+        h: 1024,
+        title
+      }
+    ]);
+
+    this.set('onInitialZoomInEnd', () => {
+      assert.dom('.pswp__caption__center').hasText(title);
+      done();
+    });
+
+    await render(hbs`
+      {{#photo-swipe items=items history=false pswp=pswp onInitialZoomInEnd=(action onInitialZoomInEnd) as |photoSwipe|}}
+        <img class="preview" src={{items.firstObject.src}} onclick={{action photoSwipe.actions.open (hash bgOpacity=0)}}>
+      {{/photo-swipe}}
+    `);
+
+    await click('.preview');
+  });
 });

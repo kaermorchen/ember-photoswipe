@@ -92,7 +92,7 @@ export default Component.extend({
 
   pswp: null,
   items: null,
-  itemProperties: ['src', 'h', 'w'], // eslint-disable-line
+  itemProperties: ['src', 'h', 'w', 'title'], // eslint-disable-line
 
   init() {
     this._super(...arguments);

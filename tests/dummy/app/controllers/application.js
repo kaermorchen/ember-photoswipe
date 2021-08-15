@@ -19,7 +19,7 @@ export default class ApplicationController extends Controller {
     new Item(3, 1024, 768),
     new Item(4, 1024, 768),
     new Item(5, 1024, 768),
-  ]
+  ];
 
   get firstObject() {
     return this.items[0];

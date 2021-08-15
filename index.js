@@ -28,16 +28,21 @@ module.exports = {
   },
 
   treeForVendor() {
-    const photoswipePath = path.join(this.resolvePackagePath('photoswipe'), 'dist');
-    const photoswipeFiles = fastbootTransform(new Funnel(photoswipePath, {
-      files: [
-        'photoswipe.js',
-        'photoswipe.min.js',
-        'photoswipe-ui-default.js',
-        'photoswipe-ui-default.min.js'
-      ],
-      destDir: this.name
-    }));
+    const photoswipePath = path.join(
+      this.resolvePackagePath('photoswipe'),
+      'dist'
+    );
+    const photoswipeFiles = fastbootTransform(
+      new Funnel(photoswipePath, {
+        files: [
+          'photoswipe.js',
+          'photoswipe.min.js',
+          'photoswipe-ui-default.js',
+          'photoswipe-ui-default.min.js',
+        ],
+        destDir: this.name,
+      })
+    );
 
     return photoswipeFiles;
   },
@@ -47,9 +52,14 @@ module.exports = {
     const host = this._findHost();
 
     if (host.project.findAddonByName('ember-cli-sass')) {
-      styleTrees.push(new Funnel(path.join(this.resolvePackagePath('photoswipe'), 'src', 'css'), {
-        destDir: this.name
-      }));
+      styleTrees.push(
+        new Funnel(
+          path.join(this.resolvePackagePath('photoswipe'), 'src', 'css'),
+          {
+            destDir: this.name,
+          }
+        )
+      );
     }
 
     if (tree) {
@@ -60,17 +70,25 @@ module.exports = {
   },
 
   treeForPublic() {
-    const defaultSkinPath = path.join(this.resolvePackagePath('photoswipe'), 'dist', 'default-skin');
+    const defaultSkinPath = path.join(
+      this.resolvePackagePath('photoswipe'),
+      'dist',
+      'default-skin'
+    );
     const publicTree = new Funnel(defaultSkinPath, {
       destDir: '/assets/images',
-      exclude: ['default-skin.css']
+      exclude: ['default-skin.css'],
     });
 
     return publicTree;
   },
 
   resolvePackagePath(packageName) {
-    return path.dirname(resolve.sync(`${packageName}/package.json`, { basedir: this.app.project.root }));
+    return path.dirname(
+      resolve.sync(`${packageName}/package.json`, {
+        basedir: this.app.project.root,
+      })
+    );
   },
 
   _ensureFindHost() {
@@ -86,5 +104,5 @@ module.exports = {
         return app;
       };
     }
-  }
+  },
 };

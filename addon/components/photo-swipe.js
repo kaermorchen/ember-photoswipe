@@ -106,7 +106,7 @@ export default class PhotoSwipeComponent extends Component {
   }
 
   get usedPswpEvents() {
-    return pswpEvents.filter(eventName => {
+    return pswpEvents.filter((eventName) => {
       let actionName = 'on' + classify(eventName);
 
       return this.args[actionName] !== undefined;
@@ -120,11 +120,16 @@ export default class PhotoSwipeComponent extends Component {
       return getProperties(item, this.itemProperties);
     });
 
-    this.pswp = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, assignedOptions);
+    this.pswp = new PhotoSwipe(
+      pswpElement,
+      PhotoSwipeUI_Default,
+      items,
+      assignedOptions
+    );
 
     this.pswp.init();
 
-    this.usedPswpEvents.forEach(eventName => {
+    this.usedPswpEvents.forEach((eventName) => {
       let actionName = 'on' + classify(eventName);
 
       if (this.args[actionName]) {
@@ -134,6 +139,7 @@ export default class PhotoSwipeComponent extends Component {
   }
 
   willDestroy() {
+    super.willDestroy(...arguments);
     if (this.pswp) {
       this.pswp.close();
       this.pswp = null;

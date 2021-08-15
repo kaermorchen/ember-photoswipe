@@ -16,11 +16,13 @@ module('Integration | Component | photo-swipe', function (hooks) {
     assert.expect(1);
     const done = assert.async();
 
-    this.set('items', [{
-      src: 'https://picsum.photos/1024/768?random&id=0',
-      w: 1024,
-      h: 768,
-    }]);
+    this.set('items', [
+      {
+        src: 'https://picsum.photos/1024/768?random&id=0',
+        w: 1024,
+        h: 768,
+      },
+    ]);
 
     this.set('onInitialZoomInEnd', () => {
       assert.dom('.pswp').hasClass('test-class');
@@ -40,14 +42,18 @@ module('Integration | Component | photo-swipe', function (hooks) {
     assert.expect(1);
     const done = assert.async();
 
-    this.set('items', [{
-      src: 'https://picsum.photos/1024/768?random&id=0',
-      w: 1024,
-      h: 768,
-    }]);
+    this.set('items', [
+      {
+        src: 'https://picsum.photos/1024/768?random&id=0',
+        w: 1024,
+        h: 768,
+      },
+    ]);
 
     this.set('onInitialZoomInEnd', () => {
-      assert.dom('.pswp__button.pswp__button--close').hasClass('pswp__element--disabled');
+      assert
+        .dom('.pswp__button.pswp__button--close')
+        .hasClass('pswp__element--disabled');
       done();
     });
 
@@ -64,14 +70,16 @@ module('Integration | Component | photo-swipe', function (hooks) {
     assert.expect(1);
     const done = assert.async();
 
-    this.set('items', [{
-      src: 'https://picsum.photos/1024/768?random&id=0',
-      w: 1024,
-      h: 768,
-    }]);
+    this.set('items', [
+      {
+        src: 'https://picsum.photos/1024/768?random&id=0',
+        w: 1024,
+        h: 768,
+      },
+    ]);
 
     this.set('onInitialZoomInEnd', () => {
-      assert.ok(true, "onInitialZoomInEnd triggered");
+      assert.ok(true, 'onInitialZoomInEnd triggered');
       done();
     });
 
@@ -88,15 +96,18 @@ module('Integration | Component | photo-swipe', function (hooks) {
     assert.expect(1);
     const done = assert.async();
 
-    this.set('items', [{
-      src: 'https://picsum.photos/1024/768?random&id=0',
-      w: 1024,
-      h: 768,
-    }, {
-      src: 'https://picsum.photos/1024/768?random&id=1',
-      w: 768,
-      h: 1024,
-    }]);
+    this.set('items', [
+      {
+        src: 'https://picsum.photos/1024/768?random&id=0',
+        w: 1024,
+        h: 768,
+      },
+      {
+        src: 'https://picsum.photos/1024/768?random&id=1',
+        w: 768,
+        h: 1024,
+      },
+    ]);
 
     this.set('onInitialZoomInEnd', () => {
       assert.dom('.pswp__bg').hasAttribute('style', 'opacity: 0;');
@@ -124,7 +135,7 @@ module('Integration | Component | photo-swipe', function (hooks) {
         this.h = h;
         this.title = title;
       }
-    };
+    }
 
     this.set('items', [
       new Item('https://picsum.photos/1024/768?random&id=0', 1024, 768, title),

@@ -3,12 +3,12 @@
     <div class="col">
       <h1>Ember PhotoSwipe</h1>
 
-      <p>An <a href="https://emberjs.com/">Ember</a> addon for using <a href="http://photoswipe.com/">Photoswipe</a> in Ember applications.</p>
+      <p>An <a href="https://emberjs.com/">Ember</a> addon for using <a href="https://photoswipe.com/">Photoswipe</a> in Ember applications.</p>
 
       <PhotoSwipe @items={{this.items}} @history={{false}} as |photoswipe|>
         <div class="row">
           <div class="col-12 col-md-6 mb-4">
-            <img src={{this.items.firstObject.src}} {{on 'click' (fn photoswipe.actions.open (hash index=0))}} class="img-fluid" alt="Item 1" role="button">
+            <img src={{this.firstObject.src}} {{on 'click' (fn photoswipe.actions.open (hash index=0))}} class="img-fluid" alt="Item 1" role="button">
           </div>
           <div class="col-12 col-md-6">
             <div class="row">

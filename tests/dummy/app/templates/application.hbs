@@ -5,31 +5,31 @@
 
       <p>An <a href="https://emberjs.com/">Ember</a> addon for using <a href="http://photoswipe.com/">Photoswipe</a> in Ember applications.</p>
 
-      {{#photo-swipe items=items history=false as |photoswipe|}}
+      <PhotoSwipe @items={{this.items}} @history={{false}} as |photoswipe|>
         <div class="row">
           <div class="col-12 col-md-6 mb-4">
-            <img src={{items.firstObject.src}} onclick={{action photoswipe.actions.open (hash index=index)}} class="img-fluid" alt="" role="button">
+            <img src={{this.items.firstObject.src}} {{on 'click' (fn photoswipe.actions.open (hash index=0))}} class="img-fluid" alt="Item 1" role="button">
           </div>
           <div class="col-12 col-md-6">
             <div class="row">
-              {{#each items as |item index|}}
+              {{#each this.items as |item index|}}
                 {{#if index}}
                   <div class="col-12 col-md-6 mb-4">
-                    <img src={{item.src}} onclick={{action photoswipe.actions.open (hash index=index)}} class="img-fluid" alt="" role="button">
+                    <img src={{item.src}} {{on 'click' (fn photoswipe.actions.open (hash index=index))}} class="img-fluid" alt="Item {{index}}" role="button">
                   </div>
                 {{/if}}
               {{/each}}
             </div>
           </div>
         </div>
-      {{/photo-swipe}}
+      </PhotoSwipe>
 
       <div class="row">
         <div class="col-12 col-sm-6">
           <p>Fork me on <a href="https://github.com/kaermorchen/ember-photoswipe" title="Ember PhotoSwipe">github</a>.</p>
         </div>
         <div class="col-12 col-sm-6 text-right">
-          <p>The images from <a href="https://picsum.photos/" title="picsum.photos">picsum.photos</a></p>
+          <p>The images from <a href="https://picsum.photos/" title="Picsum web-site">picsum.photos</a></p>
         </div>
       </div>
     </div>

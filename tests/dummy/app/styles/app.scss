@@ -10,10 +10,9 @@
 @import "ember-photoswipe";
 
 html, body,
-body > .ember-view,
-body > .ember-view > .container,
-body > .ember-view > .container > .row {
-  height: 100%;
+body > .container,
+body > .container > .row {
+  height: 100vh;
 }
 
 body {

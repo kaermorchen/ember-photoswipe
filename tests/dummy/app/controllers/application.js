@@ -1,39 +1,27 @@
 import Controller from '@ember/controller';
-import { A } from '@ember/array';
-import EmberObject, { computed } from '@ember/object';
 
-const Item = EmberObject.extend({
-  src: computed('id', 'w', 'h', function() {
-    return `https://picsum.photos/${this.get('w')}/${this.get('h')}?random&id=${this.get('id')}`;
-  })
-});
+class Item {
+  constructor(id, w, h) {
+    this.id = id;
+    this.w = w;
+    this.h = h;
+  }
 
-export default Controller.extend({
-  items: A([
-    Item.create({
-      id: 1,
-      w: 1024,
-      h: 768,
-    }),
-    Item.create({
-      id: 2,
-      w: 1024,
-      h: 768,
-    }),
-    Item.create({
-      id: 3,
-      w: 1024,
-      h: 768,
-    }),
-    Item.create({
-      id: 4,
-      w: 1024,
-      h: 768,
-    }),
-    Item.create({
-      id: 5,
-      w: 1024,
-      h: 768,
-    }),
-  ])
-});
+  get src() {
+    return `https://picsum.photos/${this.w}/${this.h}?random&id=${this.id}`;
+  }
+}
+
+export default class ApplicationController extends Controller {
+  items = [
+    new Item(1, 1024, 768),
+    new Item(2, 1024, 768),
+    new Item(3, 1024, 768),
+    new Item(4, 1024, 768),
+    new Item(5, 1024, 768),
+  ];
+
+  get firstObject() {
+    return this.items[0];
+  }
+}

@@ -61,7 +61,7 @@ export default class ApplicationController extends Controller {
 <!-- Template -->
 <PhotoSwipe @items={{this.items}} as |photoSwipe|>
   {{#each this.items as |item index|}}
-    <img src={{this.items.src}} {{on 'click' (fn photoSwipe.actions.open (hash index=index))}} >
+    <img src={{item.src}} {{on 'click' (fn photoSwipe.actions.open (hash index=index))}} >
   {{/each}}
 </PhotoSwipe>
 ```
